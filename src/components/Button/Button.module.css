@@ -1,5 +1,6 @@
-.red { background-color: #f02244; }
-.blue { background-color: #2e6dcc;}
+.initial.red { background-color: #f02244; }
+.initial.blue { background-color: #2e6dcc;}
+.initial.disabled { background-color: #ccc; color: #494949 }
 
 .initial {
     border: none;

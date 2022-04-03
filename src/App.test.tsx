@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
 
 describe("Initial states check.", () => {
@@ -14,5 +14,22 @@ describe("Initial states check.", () => {
     let elem = screen.getByRole("checkbox");
 
     expect(elem).not.toBeChecked();
+  });
+});
+
+describe("Changing the checkbox value must diable/enable button", () => {
+  test("The button must be enabled at first", () => {
+    render(<App />);
+    let button = screen.getByRole("button", { name: "Change color to blue" });
+    let checkbox = screen.getByRole("checkbox", { name: "Disable the button" });
+
+    fireEvent.click(checkbox);
+    
+    expect(checkbox).toBeChecked();
+    expect(button).not.toBeEnabled();
+    
+    fireEvent.click(checkbox);
+    expect(checkbox).not.toBeChecked();
+    expect(button).toBeEnabled();
   });
 });

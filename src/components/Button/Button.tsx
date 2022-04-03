@@ -2,12 +2,13 @@ import React, { FC, useState } from "react";
 import S from './Button.module.css';
 
 interface Props {
-  title?: string;
-  onClick?: () => void;
-  className?: string;
+  title?: string
+  onClick?: () => void
+  disabled?: boolean
+  className?: string
 }
 
-const Button: FC<Props> = ({ title, onClick, className: externalClass }) => {
+const Button: FC<Props> = ({ onClick, className: externalClass, disabled }) => {
   const [active, setActive] = useState(false);
   
   const clickHandler = () => {
@@ -16,12 +17,13 @@ const Button: FC<Props> = ({ title, onClick, className: externalClass }) => {
   };
 
   const getClassNames = () => {
-    const currentStyle = active ? S.blue : S.red;
-    return `${externalClass} ${currentStyle} ${S.initial}`;
+    const currentStyle = disabled ? S.disabled 
+                        : active ? S.blue : S.red;
+    return `${externalClass} ${S.initial} ${currentStyle}`;
   };
 
   return (
-    <button className={getClassNames()} onClick={clickHandler}>
+    <button className={getClassNames()} onClick={clickHandler} disabled={disabled}>
       Change color to {active ? 'red' : 'blue' }
     </button>
   );

@@ -1,25 +1,17 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 
 interface Props {
-  checked?: boolean;
-  onClick?: () => void;
+  checked: boolean
+  title: string
+  onChange: () => void
 }
 
-const Checkbox: FC<Props> = ({ onClick, checked }) => {
-  const [xChecked, setxChecked] = useState(false);
-  
-  const clickHandler = () => {
-    setxChecked(!xChecked);
-    onClick?.();
-  };
-
-  useEffect(() => {
-    setxChecked(checked ?? false);
-  }, [checked])
-  
-
+const Checkbox: FC<Props> = ({ onChange, checked, title }) => {
   return (
-    <input type="checkbox" onClick={clickHandler} checked={xChecked} />
+    <label>
+      <input type="checkbox" onChange={onChange} checked={checked} />
+      {title}
+    </label>
   );
 };
 
