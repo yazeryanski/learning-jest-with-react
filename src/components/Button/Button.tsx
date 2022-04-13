@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState } from 'react';
 import S from './Button.module.css';
 
 interface Props {
@@ -17,8 +17,7 @@ const Button: FC<Props> = ({ onClick, className: externalClass, disabled }) => {
   };
 
   const getClassNames = () => {
-    const currentStyle = disabled ? S.disabled 
-                        : active ? S.blue : S.red;
+    const currentStyle = disabled ? S.disabled : active ? S.blue : S.red;
     return `${externalClass} ${S.initial} ${currentStyle}`;
   };
 
