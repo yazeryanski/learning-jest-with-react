@@ -10,7 +10,7 @@ export default function ToppingOption({name, imagePath}: Option) {
         <Card.Img 
           role="img" 
           variant="top" 
-          alt={`${name} scoop`}
+          alt={`${name} topping`}
           src={`http://localhost:3030${imagePath}`}  
         />
         <Card.Body>
