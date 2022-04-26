@@ -4,5 +4,7 @@ import React from 'react';
 
 test('should visible helo react text', () => { 
   render(<App />);
-  expect( screen.getByText('Hello React') ).toHaveTextContent('Hello React');
+  
+  const text = screen.getByText('Unit testing');
+  expect( text ).toHaveTextContent('Unit testing');
 });
