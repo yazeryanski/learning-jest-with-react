@@ -1,9 +1,9 @@
 import React from 'react';
 import { Card, Col } from 'react-bootstrap';
-import { Option } from '../../../api/Types';
+import { Option } from '../../../Types/Main';
 
 
-export default function OptionItem({name, imagePath}: Option) {
+export default function ToppingOption({name, imagePath}: Option) {
   return (
     <Col lg={3} md={4} xs={12}>
       <Card>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchOptions } from '../../../../api/api';
-import { Option, OptionType } from '../../../../api/Types';
+import { Option, OptionType } from '../../../../Types/Main';
 
 
 

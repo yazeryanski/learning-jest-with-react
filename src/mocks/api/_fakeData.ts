@@ -1,4 +1,4 @@
-import { Option } from '../../api/Types';
+import { Option } from '../../Types/Main';
 
 export const scoops: Option[] = [
   { name: 'Chocolate', imagePath: '/images/chocolate.png' },

@@ -1,16 +1,17 @@
 import { Row } from 'react-bootstrap';
-import { OptionType } from '../../../api/Types';
+import { OptionType } from '../../../Types/Main';
 import { useOptions } from './hooks/useOptions';
-import OptionItem from './Item';
+import ScoopOption from './ScoopOption';
 import React from 'react';
+import ToppingOption from './ToppingOption';
 
 interface Props {
   type: OptionType
 }
 const Options = ({type}: Props) => {
   const items = useOptions(type);
-
-  const renderedItems = items.map( item => <OptionItem name={item.name} imagePath={item.imagePath} key={item.name} /> );
+  const ItemComponent = type === 'scoops' ? ScoopOption : ToppingOption;
+  const renderedItems = items.map( item => <ItemComponent name={item.name} imagePath={item.imagePath} key={item.name} /> );
 
   return (
     <Row>

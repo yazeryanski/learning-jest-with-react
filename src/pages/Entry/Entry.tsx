@@ -5,7 +5,7 @@ import Options from './Options/Options';
 export default function Entry() {
   return (
     <Container>
-      <Options type="scoops" />
+      <Options type="toppings" />
     </Container>
   );
 }

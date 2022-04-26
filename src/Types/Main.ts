@@ -1,4 +1,4 @@
-export type OptionType = 'scoops' | 'creams';
+export type OptionType = 'scoops' | 'toppings';
 
 export interface Option {
   name: string;
