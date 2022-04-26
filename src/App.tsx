@@ -1,12 +1,13 @@
 import './App.css';
 import React from 'react';
-import Summary from './pages/Summary/Summary';
+import Entry from './pages/Entry/Entry';
 
-function App() {
+function App() {  
   return (
     <div className="App">
-      <h2>Hello React</h2>
-      <Summary />
+      <h2>Unit testing</h2>
+      {/* <Summary /> */}
+      <Entry />
     </div>
   );
 }
