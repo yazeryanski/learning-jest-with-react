@@ -7,6 +7,8 @@ const Instance = axios.create({
 
 export const fetchOptions = async (type: OptionType) : Promise<Option[]> => {
   const res = await Instance.get(type);
-
+  if (res.status !== 200) {
+    throw new Error('Server Error');
+  }
   return res?.data || [];
 };

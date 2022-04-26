@@ -2,7 +2,7 @@
 import { rest } from 'msw';
 import { scoops, toppings } from './_fakeData';
 
-const BASE_PATH = 'http://localhost:3030';
+export const BASE_PATH = 'http://localhost:3030';
 
 const getScoops = rest.get(`${BASE_PATH}/scoops`, (req, res, ctx) => {
   return res(

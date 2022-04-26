@@ -5,7 +5,7 @@ import { Option } from '../../../Types/Main';
 
 export default function ScoopOption({name, imagePath}: Option) {
   return (
-    <Col lg={3} md={4} xs={12}>
+    <Col lg={2} md={3} sm={6} xs={12}>
       <Card>
         <Card.Img 
           role="img" 
