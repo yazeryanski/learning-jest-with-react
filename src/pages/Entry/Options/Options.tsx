@@ -29,4 +29,3 @@ const Options = ({type, ...restProps}: Props) => {
 };
 
 export default Options;
-
