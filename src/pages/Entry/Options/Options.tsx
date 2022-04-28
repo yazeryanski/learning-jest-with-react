@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { Row } from 'react-bootstrap';
+// import useOrderContext from '../../../contexts/Order/UseOrderContext';
 import { OptionType } from '../../../Types/Main';
 import { useOptions } from './hooks/useOptions';
 
@@ -14,6 +15,8 @@ interface Props {
 }
 
 const Options = ({type, ...restProps}: Props) => {
+  // TODO: Finish the realisation
+  // const [summary, updateItemCount, resetOrder] = useOrderContext();
   const [items, error] = useOptions(type);
   
   const ItemComponent = type === 'scoops' ? ScoopOption : ToppingOption;
