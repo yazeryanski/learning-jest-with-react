@@ -22,9 +22,9 @@ const Options = ({type, ...restProps}: Props) => {
   const renderItems = () => items.map( item => <SingleOptionComponent name={item.name} imagePath={item.imagePath} key={item.name} /> );
 
   return (
-    <div>
+    <div {...restProps}>
       <h5 className="fw-bold">Total: <span role="total">{ summary.totals[type] }</span></h5>
-      <Row {...restProps}>
+      <Row>
         <Suspense fallback="<span>Loading</span>">
           {!error ? renderItems() : <AlertBox variant="danger" /> }
         </Suspense>
