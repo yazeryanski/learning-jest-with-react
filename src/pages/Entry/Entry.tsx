@@ -1,5 +1,5 @@
+import Options from 'components/Options/Options';
 import React from 'react';
-import Options from './Options/Options';
 
 export default function Entry() {
   return (

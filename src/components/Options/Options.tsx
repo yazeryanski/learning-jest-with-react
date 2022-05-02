@@ -1,13 +1,13 @@
+import useOrderContext from 'contexts/Order/useOrderContext';
 import React, { Suspense } from 'react';
 import { Row } from 'react-bootstrap';
-import useOrderContext from '../../../contexts/Order/useOrderContext';
-import { OptionType } from '../../../Types/Main';
+import { OptionType } from 'Types/Main';
 import { useOptions } from './hooks/useOptions';
 
 // Lazy Components
-const ScoopOption = React.lazy(() => import('./ScoopOption'));
-const ToppingOption = React.lazy(() => import('./ToppingOption'));
-const AlertBox = React.lazy(() => import('../../../components/Alert'));
+const ScoopOption = React.lazy(() => import('./elements/ScoopOption'));
+const ToppingOption = React.lazy(() => import('./elements/ToppingOption'));
+const AlertBox = React.lazy(() => import('components/Alert'));
 
 interface Props {
   type: OptionType;
