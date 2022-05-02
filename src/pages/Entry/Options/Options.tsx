@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { Row } from 'react-bootstrap';
-// import useOrderContext from '../../../contexts/Order/UseOrderContext';
+import useOrderContext from '../../../contexts/Order/useOrderContext';
 import { OptionType } from '../../../Types/Main';
 import { useOptions } from './hooks/useOptions';
 
@@ -15,19 +15,21 @@ interface Props {
 }
 
 const Options = ({type, ...restProps}: Props) => {
-  // TODO: Finish the realisation
-  // const [summary, updateItemCount, resetOrder] = useOrderContext();
+  const [summary] = useOrderContext();
   const [items, error] = useOptions(type);
   
-  const ItemComponent = type === 'scoops' ? ScoopOption : ToppingOption;
-  const renderItems = () => items.map( item => <ItemComponent name={item.name} imagePath={item.imagePath} key={item.name} /> );
+  const SingleOptionComponent = type === 'scoops' ? ScoopOption : ToppingOption;
+  const renderItems = () => items.map( item => <SingleOptionComponent name={item.name} imagePath={item.imagePath} key={item.name} /> );
 
   return (
-    <Row {...restProps}>
-      <Suspense fallback="<span>Loading</span>">
-        {!error ? renderItems() : <AlertBox variant="danger" /> }
-      </Suspense>
-    </Row>
+    <div>
+      <h5 className="fw-bold">Total: <span role="total">{ summary.totals[type] }</span></h5>
+      <Row {...restProps}>
+        <Suspense fallback="<span>Loading</span>">
+          {!error ? renderItems() : <AlertBox variant="danger" /> }
+        </Suspense>
+      </Row>
+    </div>
   );
 };
 

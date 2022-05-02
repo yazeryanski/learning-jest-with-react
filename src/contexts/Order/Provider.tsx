@@ -6,7 +6,6 @@ import { calculateSubtotal } from './helpers';
 import { ContextType, OptionCountType, TotalsType } from './Types';
 
 export function OrderContextProvider(props: {[x:string]: unknown}) {
-
   const [optionCounts, setOptionCounts] = useState<OptionCountType>({
     scoops: new Map(),
     toppings: new Map(),

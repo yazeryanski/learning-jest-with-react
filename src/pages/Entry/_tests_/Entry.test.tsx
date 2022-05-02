@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from 'utils/testUtils/RenderWithOrderContext';
 import { rest } from 'msw';
 import { BASE_PATH } from '../../../mocks/api/api';
 import { server } from '../../../mocks/server';
