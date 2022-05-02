@@ -20,12 +20,12 @@ describe('Initial state testing', () => {
 });
 
 describe('Checkbox is controling the button', () => {
-  test('if chekbox is chekced the button is enabled', () => { 
+  test('if chekbox is chekced the button is enabled', async () => { 
     render(<Form />);
     const checkbox = screen.getByRole('policy');
     const button = screen.getByRole('submit');
 
-    userEvent.click(checkbox);
+    await userEvent.click(checkbox);
 
     expect( checkbox ).toBeChecked();
     expect( button ).toBeEnabled();
@@ -56,7 +56,7 @@ describe('Showing popover when user hovers in the term link', () => {
     const termLink = screen.getByRole('term');
     userEvent.hover(termLink);
 
-    const popover = screen.getByRole('popover');
+    const popover = await screen.findByRole('popover');
     expect(popover).toBeInTheDocument();
 
     userEvent.unhover(termLink);
