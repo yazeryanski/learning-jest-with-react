@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { OptionType } from '../../Types/Main';
+import { OptionType } from '../../types/Main';
 import formatCurrency from '../../utils/FormatCurency';
 import OrderContext from './Context';
 import { calculateSubtotal } from './helpers';

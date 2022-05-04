@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Option, OptionType } from '../Types/Main';
+import { Option, OptionType } from '../types/Main';
 
 export const BASE_URL = 'http://localhost:3030/';
 
