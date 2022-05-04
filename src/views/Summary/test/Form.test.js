@@ -1,8 +1,7 @@
-import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
+import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Form from '../Form';
-import { act } from 'react-dom/test-utils';
 
 describe('Initial state testing', () => {
   test('should checbox be unchecked', () => { 
@@ -29,11 +28,7 @@ describe('Checkbox is controling the button', () => {
     expect( checkbox ).not.toBeChecked();
     expect( button ).toBeDisabled();
 
-    await waitFor( async () => {
-      await userEvent.click(checkbox);
-      const promise = Promise.resolve();
-      await act( jest.fn( () => promise) );
-    });
+    await act( async () => await userEvent.click(checkbox));
 
     expect( checkbox ).toBeChecked();
     expect( button ).toBeEnabled();
@@ -44,12 +39,9 @@ describe('Checkbox is controling the button', () => {
     const checkbox = screen.getByRole('policy');
     const button = screen.getByRole('submit');
 
-    await waitFor( async () => {
-      await userEvent.click(checkbox);
-      await userEvent.click(checkbox);
-      const promise = Promise.resolve();
-      await act( jest.fn( () => promise) );
-    });
+    await act( async () => await userEvent.click(checkbox) );
+    await act( async () => await userEvent.click(checkbox) );
+
     
     expect( checkbox ).not.toBeChecked();
     expect( button ).toBeDisabled();

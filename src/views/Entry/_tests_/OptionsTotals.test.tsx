@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, within, waitFor } from 'utils/testUtils/RenderWithOrderContext';
+import { render, screen, within, waitFor, act} from 'utils/testUtils/RenderWithOrderContext';
 import userEvent from '@testing-library/user-event';
 import formatCurrency from 'utils/FormatCurency';
 import {pricePerItem} from 'utils/Constants';
@@ -19,9 +19,9 @@ test('On Changing scoops count it changes the total price too', async () => {
     const counter = within(item).getByRole('counter');
     const currentCount = i + 1;
     
-    userEvent.clear(counter);
+    await act( async () => await userEvent.clear(counter) );
     // Typing 1
-    userEvent.type(counter, '1');
+    await act( async () => await userEvent.type(counter, '1') );
    
     await waitFor ( () => {
       expect(scoopsTotal).toHaveTextContent( formatCurrency(pricePerItem.scoops * currentCount) );
@@ -43,7 +43,7 @@ test('Checking and unchecking of the topping changes the total price', async () 
     const checkbox = within(item).getByRole('checkbox');
     expect(checkbox).not.toBeChecked();
     
-    await userEvent.click(checkbox);
+    await act( async () => await userEvent.click(checkbox) );
     expect(checkbox).toBeChecked();
     
     await waitFor ( () => {
@@ -56,11 +56,11 @@ test('Checking and unchecking of the topping changes the total price', async () 
     const checkbox = within(item).getByRole('checkbox');
     expect(checkbox).toBeChecked();
     
-    await userEvent.click(checkbox);
+    await act( async () => await userEvent.click(checkbox) );
     expect(checkbox).not.toBeChecked();
     
     await waitFor ( () => {
-      expect(toppingsTotal).toHaveTextContent( formatCurrency(pricePerItem.toppings * (toppings.length - i)) );
+      expect(toppingsTotal).toHaveTextContent( formatCurrency(pricePerItem.toppings * (toppings.length - (i + 1))) );
     });
   }
 });
