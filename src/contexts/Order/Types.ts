@@ -1,4 +1,4 @@
-import { OptionType } from '../../Types/Main';
+import { OptionType } from '../../types/Main';
 
 export interface OptionCountType {
   scoops: Map<string, number>;

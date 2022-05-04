@@ -1,7 +1,7 @@
 import useOrderContext from 'contexts/Order/useOrderContext';
 import React, { Suspense } from 'react';
 import { Row } from 'react-bootstrap';
-import { OptionType } from 'Types/Main';
+import { OptionType } from 'types/Main';
 import { useOptions } from './hooks/useOptions';
 
 // Lazy Components
