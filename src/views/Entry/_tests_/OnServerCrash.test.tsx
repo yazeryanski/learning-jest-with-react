@@ -19,7 +19,6 @@ test('Show error alerts if the server is crashed', async () => {
     })
   ]);
 
-
   render(<Entry />);
   await waitFor( async ()=> {
     const alerts = await screen.findAllByRole('alert');
