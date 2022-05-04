@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { Option, OptionType } from '../Types/Main';
 
+export const BASE_URL = 'http://localhost:3030/';
+
 const Instance = axios.create({
-  baseURL: 'http://localhost:3030/',
+  baseURL: BASE_URL,
 });
 
 export const fetchOptions = async (type: OptionType) : Promise<Option[]> => {
