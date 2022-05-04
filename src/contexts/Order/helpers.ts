@@ -1,5 +1,5 @@
-import { OptionType } from '../../types/Main';
-import { pricePerItem } from '../../utils/Constants';
+import { OptionType } from 'types/Main';
+import { pricePerItem } from 'utils/Constants';
 import { OptionCountType } from './Types';
 
 
