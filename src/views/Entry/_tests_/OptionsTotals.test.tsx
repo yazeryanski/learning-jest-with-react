@@ -1,41 +1,9 @@
-import { render, screen, within, waitFor } from 'utils/testUtils/RenderWithOrderContext';
-import userEvent from '@testing-library/user-event';
-import Options from '../Options/Options';
 import React from 'react';
+import { render, screen, within, waitFor, act} from 'utils/testUtils/RenderWithOrderContext';
+import userEvent from '@testing-library/user-event';
 import formatCurrency from 'utils/FormatCurency';
 import {pricePerItem} from 'utils/Constants';
-
-test('Displays images for each scoop option', async () => {
-  render(<Options type="scoops"/>);
-
-  // Find images
-  await waitFor( async ()=> {
-    const scoopImages = await screen.findAllByRole<HTMLImageElement>('img', { name: /scoops$/i });
-    expect(scoopImages).toHaveLength(2);
-  
-    const altText = scoopImages.map( ( el:HTMLImageElement ) => el.alt );
-    expect(altText).toEqual(['Chocolate scoops', 'Vanilla scoops']);
-  });
-
-});
-
-test('Displays images for each topping option', async () => {
-  render(<Options type="toppings"/> );
-
-  // Find images
-  await waitFor( async ()=> {
-    const toppingImages = await screen.findAllByRole<HTMLImageElement>('img', { name: /toppings$/i });
-    expect(toppingImages).toHaveLength(4);
-  
-    const altText = toppingImages.map( ( el:HTMLImageElement ) => el.alt );
-    expect(altText).toEqual([
-      'M&Ms toppings',
-      'Hot fudge toppings',
-      'Peanut butter cups toppings',
-      'Gummi bears toppings',
-    ]);
-  });
-});
+import Options from 'components/Options/Options';
 
 test('On Changing scoops count it changes the total price too', async () => {
   render(<Options type="scoops"/>);
@@ -51,9 +19,9 @@ test('On Changing scoops count it changes the total price too', async () => {
     const counter = within(item).getByRole('counter');
     const currentCount = i + 1;
     
-    userEvent.clear(counter);
+    await act( async () => await userEvent.clear(counter) );
     // Typing 1
-    userEvent.type(counter, '1');
+    await act( async () => await userEvent.type(counter, '1') );
    
     await waitFor ( () => {
       expect(scoopsTotal).toHaveTextContent( formatCurrency(pricePerItem.scoops * currentCount) );
@@ -75,7 +43,7 @@ test('Checking and unchecking of the topping changes the total price', async () 
     const checkbox = within(item).getByRole('checkbox');
     expect(checkbox).not.toBeChecked();
     
-    await userEvent.click(checkbox);
+    await act( async () => await userEvent.click(checkbox) );
     expect(checkbox).toBeChecked();
     
     await waitFor ( () => {
@@ -88,11 +56,11 @@ test('Checking and unchecking of the topping changes the total price', async () 
     const checkbox = within(item).getByRole('checkbox');
     expect(checkbox).toBeChecked();
     
-    await userEvent.click(checkbox);
+    await act( async () => await userEvent.click(checkbox) );
     expect(checkbox).not.toBeChecked();
     
     await waitFor ( () => {
-      expect(toppingsTotal).toHaveTextContent( formatCurrency(pricePerItem.toppings * (toppings.length - i)) );
+      expect(toppingsTotal).toHaveTextContent( formatCurrency(pricePerItem.toppings * (toppings.length - (i + 1))) );
     });
   }
 });

@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { Card, Col } from 'react-bootstrap';
 import useOrderContext from '../../../contexts/Order/useOrderContext';
 import { Option } from '../../../Types/Main';
-import Checkbox from './elements/Checkbox';
+import Checkbox from './Checkbox';
 
 
 export default function ToppingOption({name, imagePath}: Option) {

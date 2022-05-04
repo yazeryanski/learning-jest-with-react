@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { Card, Col } from 'react-bootstrap';
 import useOrderContext from '../../../contexts/Order/useOrderContext';
 import { Option } from '../../../Types/Main';
-import Counter from './elements/Counter';
+import Counter from './Counter';
 
 
 export default function ScoopOption({name, imagePath}: Option) {
