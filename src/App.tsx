@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
-import Entry from './pages/Entry/Entry';
-// import Summary from './pages/Summary/Summary';
+import Entry from './views/Entry/Entry';
+// import Summary from './views/Summary/Summary';
 import { OrderContextProvider } from './contexts/Order/Provider';
 import { Container } from 'react-bootstrap';
 

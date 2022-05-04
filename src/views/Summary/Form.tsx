@@ -14,7 +14,7 @@ export default function Form() {
       <FormGroup className="me-3">
         <FormLabel className="d-flex text-center">
           <FormCheck role="policy" checked={isAgree} onChange={onChange} type="checkbox"></FormCheck>
-          <OverlayTrigger trigger="hover" placement="right" overlay={PrivacyPopover}>
+          <OverlayTrigger trigger={['hover', 'click']} placement="right" overlay={PrivacyPopover}>
             <span className="ms-2 user-select-none  position-relative" role="term">Agree with <span className="text-primary cursor-pointer">Privacy Policy.</span></span>
           </OverlayTrigger>
         </FormLabel>

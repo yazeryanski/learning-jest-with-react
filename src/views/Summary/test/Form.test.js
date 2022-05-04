@@ -1,7 +1,8 @@
-import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import Form from '../Form';
+import { act } from 'react-dom/test-utils';
 
 describe('Initial state testing', () => {
   test('should checbox be unchecked', () => { 
@@ -25,19 +26,30 @@ describe('Checkbox is controling the button', () => {
     const checkbox = screen.getByRole('policy');
     const button = screen.getByRole('submit');
 
-    await userEvent.click(checkbox);
+    expect( checkbox ).not.toBeChecked();
+    expect( button ).toBeDisabled();
+
+    await waitFor( async () => {
+      await userEvent.click(checkbox);
+      const promise = Promise.resolve();
+      await act( jest.fn( () => promise) );
+    });
 
     expect( checkbox ).toBeChecked();
     expect( button ).toBeEnabled();
   });
 
-  test('if chekbox is unchekced the button is disabled', () => { 
+  test('if chekbox is unchekced the button is disabled', async () => { 
     render(<Form />);
     const checkbox = screen.getByRole('policy');
     const button = screen.getByRole('submit');
 
-    userEvent.click(checkbox);
-    userEvent.click(checkbox);
+    await waitFor( async () => {
+      await userEvent.click(checkbox);
+      await userEvent.click(checkbox);
+      const promise = Promise.resolve();
+      await act( jest.fn( () => promise) );
+    });
     
     expect( checkbox ).not.toBeChecked();
     expect( button ).toBeDisabled();
@@ -54,12 +66,12 @@ describe('Showing popover when user hovers in the term link', () => {
   test('should show popover on hovering in the terms link', async () => {
     render(<Form />);
     const termLink = screen.getByRole('term');
-    userEvent.hover(termLink);
-
+    
+    await act( async () => await userEvent.hover(termLink) );
     const popover = await screen.findByRole('popover');
     expect(popover).toBeInTheDocument();
-
-    userEvent.unhover(termLink);
-    await waitForElementToBeRemoved( () => screen.queryByRole('popover') );
+    
+    await act( async () => await userEvent.unhover(termLink) );
+    expect( screen.queryByRole('popover') ).not.toBeInTheDocument();
   });
 });
