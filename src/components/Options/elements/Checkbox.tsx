@@ -19,6 +19,6 @@ export default function Checkbox({onChange}: Props) {
   
 
   return (
-    <input role="checkbox" type="checkbox" checked={isSelected} onChange={checkboxChange} />
+    <input role="checkbox" type="checkbox" className="cursor-pointer" style={{width: 25, height: 25}} checked={isSelected} onChange={checkboxChange} />
   );
 }
