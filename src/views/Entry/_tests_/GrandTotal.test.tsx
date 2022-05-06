@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, within, waitFor, act } from 'utils/testUtils/RenderWithOrderContext';
+import { render, screen, within, waitFor } from 'utils/testUtils/RenderWithOrderContext';
 import userEvent from '@testing-library/user-event';
 import formatCurrency from 'utils/FormatCurency';
 import {pricePerItem} from 'utils/Constants';
@@ -19,8 +19,8 @@ describe('Testing Grandtotal', () => {
     const scoops = await screen.findAllByRole('scoop-card');
     const firstScoopsCounter = within( scoops[0] ).getByRole('counter');
     
-    await act( async () => await userEvent.clear(firstScoopsCounter) );
-    await act( async () => await userEvent.type(firstScoopsCounter, '2') );
+    await userEvent.clear(firstScoopsCounter);
+    await userEvent.type(firstScoopsCounter, '2');
 
     await waitFor( () => expect(grandTotal).toHaveTextContent( formatCurrency(2 * pricePerItem.scoops) ) );
   });
@@ -31,7 +31,7 @@ describe('Testing Grandtotal', () => {
     const toppings = await screen.findAllByRole('topping-card');
     const firstToppingCheckbox = within( toppings[0] ).getByRole('checkbox');
 
-    await act( async () => await userEvent.click(firstToppingCheckbox) );
+    await userEvent.click(firstToppingCheckbox);
     expect(firstToppingCheckbox).toBeChecked();
 
     await waitFor( () => expect(grandTotal).toHaveTextContent( formatCurrency(1 * pricePerItem.toppings) ) );
